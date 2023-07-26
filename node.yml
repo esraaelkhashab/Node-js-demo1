@@ -1,0 +1,9 @@
+version: '3'
+services:
+  Node:
+    image: ${NODE_Image_NAme} 
+    container_name: node-service-2
+   
+    ports:
+      - 8002:8080
+
