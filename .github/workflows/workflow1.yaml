@@ -30,7 +30,7 @@ jobs:
           docker build -t node-image:dev .
 
       - name: check if there is ant running or stopping containers called mynode-service  delete them
-        run:
+        run: |
           #!/bin/bash
           set -e
           {
@@ -46,6 +46,19 @@ jobs:
       - name: run container 
         run: |
          docker-compose up -d
+         
+      - name: clear-server from dangling images
+        run: |
+         #!/bin/bash
+         set -e
+         {
+         
+           docker rmi $(docker images -f dangling=true -q)
+         } || {
+         
+            echo "Failed to remove images with format none:none no images with this format on server"
+         }
+         
          
 
       
