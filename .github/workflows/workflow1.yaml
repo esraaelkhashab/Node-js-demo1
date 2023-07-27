@@ -12,7 +12,7 @@ jobs:
 
   job1:
      
-    runs-on: [self-hosted, Linux, X64] 
+    runs-on: [self-hosted, Linux, X64, label-1]
     steps:
 
       - name: get branch has changes if we have multiple branches
