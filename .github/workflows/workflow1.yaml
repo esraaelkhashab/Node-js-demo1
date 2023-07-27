@@ -26,7 +26,8 @@ jobs:
       - name: Build docker image
         run: |
           cd /opt/github/Node-js-demo1/Node-js-demo1 
-          docker build -t node-image:dev .
+          pwd
+          docker build -t node-image:dev /opt/github/Node-js-demo1/Node-js-demo1
 
       - name: check if there is ant running or stopping containers called mynode-service  delete them
         run:
