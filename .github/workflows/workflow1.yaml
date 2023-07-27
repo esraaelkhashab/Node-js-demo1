@@ -33,16 +33,16 @@ jobs:
         run:
           #!/bin/bash
           set -e
-           {
+          {
 
-              docker ps -f name=mynode-service -q|xargs --no-run-if-empty docker stop
-              docker container ls -a -fname=mynode-service -q|xargs -r docker rm
+          docker ps -f name=mynode-service -q|xargs --no-run-if-empty docker stop
+          docker container ls -a -fname=mynode-service -q|xargs -r docker rm
 
-           }|| {
+          } || {
             
-            echo "Failed to remove mynode-service there is no mynode-service on server"
+          echo "Failed to remove mynode-service there is no mynode-service on server"
 
-           }
+          }
       - name: run container 
         run: |
          docker-compose up -d
