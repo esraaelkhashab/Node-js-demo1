@@ -16,8 +16,8 @@ jobs:
     steps:
 
       -name: get branch has changes if we have multiple branches
-       run: echo "Branch_Name=${GITHUB_REF}" >> GITHUB_ENV
-
+       run: echo "Branch_Name=${GITHUB_REF}" >> $GITHUB_ENV
+          
       -name: Clone Repo
        uses: actions/checkout@v2
        with:
