@@ -24,7 +24,9 @@ jobs:
          ref: "${{ env.Branch_Name }}"
 
       - name: Build docker image
-        run: docker build -t node-image:dev .
+        run: |
+          cd /opt/github/Node-js-demo1/Node-js-demo1 
+          docker build -t node-image:dev .
 
       - name: check if there is ant running or stopping containers called mynode-service  delete them
         run:
