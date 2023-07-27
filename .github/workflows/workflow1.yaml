@@ -1,0 +1,47 @@
+name: Testing-Workflow
+
+on:
+
+  push:
+
+    branches:
+
+      - main
+
+jobs:
+
+  job1:
+     
+    runs-on: [self-hosted, Linux, X64] 
+    steps:
+
+      -name: get branch has changes if we have multiple branches
+       run: echo "Branch_Name=${GITHUB_REF}" >> GITHUB_ENV
+
+      -name: Clone Repo
+       uses: actions/checkout@v2
+       with:
+         ref: "${{ env.Branch_Name }}"
+
+      -name: Build docker image
+       run: docker build -t node-image:dev .
+
+      -name: check if there is ant running or stopping containers called mynode-service  delete them
+       run:
+         #!/bin/bash
+         set -e
+         {
+
+           docker ps -f name=mynode-service -q|xargs --no-run-if-empty docker stop
+           docker container ls -a -fname=mynode-service -q|xargs -r docker rm
+
+         }|| {
+            
+           echo "Failed to remove mynode-service there is no mynode-service on server"
+
+         }
+
+      
+
+       
+
